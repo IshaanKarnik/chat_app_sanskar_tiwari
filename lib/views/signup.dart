@@ -1,4 +1,5 @@
 import 'package:chat_app/services/auth.dart';
+import 'package:chat_app/views/chat_room_screen.dart';
 import 'package:chat_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
@@ -29,6 +30,8 @@ class _SignUpState extends State<SignUp> {
               passwordTextEditingController.text)
           .then((value) {
         print(value);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => ChatRoom()));
       });
     }
   }
@@ -39,7 +42,8 @@ class _SignUpState extends State<SignUp> {
       child: Scaffold(
         appBar: appBarMain(context),
         body: isLoading
-            ? Container(
+            ? //Conditional Operator
+            Container(
                 child: Center(
                   child: CircularProgressIndicator(),
                 ),

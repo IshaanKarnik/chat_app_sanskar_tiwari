@@ -1,6 +1,9 @@
 import 'package:chat_app/views/signup.dart';
+import 'package:chat_app/widgets/widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/views/signin.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,8 +20,39 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFF1F1F1F),
         primarySwatch: Colors.blue,
       ),
-      home: SignUp(),
-      //home: SignIn(),
+      home: FutureBuilder(
+          future: Firebase.initializeApp(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              print(snapshot.error);
+              return Scaffold(
+                appBar: appBarMain(context),
+                body: Center(
+                  child: Text('Error Initializing Firebase'),
+                ),
+              );
+            }
+            if (snapshot.connectionState == ConnectionState.done) {
+              return SignUp();
+              //return SignIn();
+            }
+            return Scaffold(
+              appBar: appBarMain(context),
+              body: Center(
+                child: Column(
+                  children: <Widget>[
+                    Text('Initializing Firebase'),
+                    SizedBox(
+                      height: 25.0,
+                    ),
+                    CircularProgressIndicator(
+                        //valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                  ],
+                ),
+              ),
+            );
+          }),
     );
   }
 }
