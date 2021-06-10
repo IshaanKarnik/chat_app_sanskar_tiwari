@@ -4,6 +4,9 @@ import 'package:chat_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggle;
+  SignIn
+
   SignIn({Key key}) : super(key: key);
 
   @override
