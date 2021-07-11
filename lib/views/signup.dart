@@ -97,7 +97,7 @@ class _SignUpState extends State<SignUp> {
                                 style: simpleTextFieldStyle(),
                                 obscureText: true,
                                 validator: (password) {
-                                  return password.length > 6
+                                  return password.length >= 6
                                       ? null
                                       : 'Password should have length greater than 6';
                                 },
