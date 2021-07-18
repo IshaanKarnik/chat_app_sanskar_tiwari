@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
 class SignUp extends StatefulWidget {
-  SignUp({Key key}) : super(key: key);
-
+  //SignUp({Key key}) : super(key: key);
+  final Function toggle;
+  SignUp(this.toggle);
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -156,12 +157,18 @@ class _SignUpState extends State<SignUp> {
                               "Do you have an account? ",
                               style: mediumTextFieldStyle(),
                             ),
-                            Text(
-                              'Sign In',
-                              style: TextStyle(
-                                fontSize: 17.0,
-                                color: Colors.white,
-                                decoration: TextDecoration.underline,
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              child: GestureDetector(
+                                onTap: widget.toggle(),
+                                child: Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    color: Colors.white,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
                               ),
                             ),
                           ],

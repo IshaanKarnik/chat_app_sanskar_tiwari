@@ -1,9 +1,7 @@
-import 'package:chat_app/views/signup.dart';
+import 'package:chat_app/helper/authenticate.dart';
 import 'package:chat_app/widgets/widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/views/signin.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,7 +31,7 @@ class MyApp extends StatelessWidget {
               );
             }
             if (snapshot.connectionState == ConnectionState.done) {
-              return SignUp();
+              return Authenticate();
               //return SignIn();
             }
             return Scaffold(
